@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTG Rules Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="info-panel">
+            <p class="eyebrow">Rule Oracle</p>
+            <h1>MTG Rules Agent</h1>
+            <p class="lede">
+                Ask about the stack, priority, combat, layers, triggered abilities, or replacement effects.
+                This prototype runs entirely in the browser and can be connected to a real rules backend later.
+            </p>
+
+            <div class="panel-card">
+                <h2>Starter prompts</h2>
+                <div class="prompt-list">
+                    <button class="prompt-chip" type="button"
+                        data-prompt="How does priority work after a spell resolves?">Priority after resolution</button>
+                    <button class="prompt-chip" type="button"
+                        data-prompt="What is the difference between triggered and activated abilities?">Triggered vs
+                        activated</button>
+                    <button class="prompt-chip" type="button"
+                        data-prompt="How do first strike and double strike affect combat damage?">Combat damage
+                        steps</button>
+                    <button class="prompt-chip" type="button"
+                        data-prompt="Explain layers for power and toughness changes.">Power and toughness
+                        layers</button>
+                </div>
+            </div>
+
+            <div class="panel-card compact">
+                <h2>Connection mode</h2>
+                <p id="connection-status">Local rules helper enabled.</p>
+                <label class="control-label" for="endpoint-input">Endpoint URL</label>
+                <input id="endpoint-input" class="endpoint-input" type="url"
+                    placeholder="https://example.com/api/mtg-rules" inputmode="url" autocomplete="url">
+                <div class="connection-actions">
+                    <button id="save-endpoint" class="ghost-button" type="button">Use endpoint</button>
+                    <button id="use-local" class="ghost-button secondary" type="button">Use local helper</button>
+                </div>
+                <p id="connection-help" class="subtle">The selected mode is stored in your browser.</p>
+            </div>
+        </aside>
+
+        <main class="chat-panel">
+            <div class="chat-header">
+                <div>
+                    <p class="eyebrow">Judge Booth</p>
+                    <h2>Chatbox</h2>
+                </div>
+                <button id="clear-chat" class="ghost-button" type="button">Clear chat</button>
+            </div>
+
+            <section id="chat-log" class="chat-log" aria-live="polite"></section>
+
+            <form id="chat-form" class="composer">
+                <label class="sr-only" for="message-input">Ask a Magic: The Gathering rules question</label>
+                <textarea id="message-input" name="message" rows="1" maxlength="1000"
+                    placeholder="Ask an MTG rules question..." required></textarea>
+                <div class="composer-actions">
+                    <p class="subtle">Shift+Enter for a new line</p>
+                    <button id="send-button" type="submit">Send</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <template id="message-template">
+        <article class="message">
+            <div class="avatar"></div>
+            <div class="bubble-wrap">
+                <p class="speaker"></p>
+                <div class="bubble"></div>
+            </div>
+        </article>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
