@@ -1,0 +1,4 @@
+python-docx==1.2.0
+chromadb==1.5.5
+sentence-transformers==5.3.0
+fastmcp==3.1.1
